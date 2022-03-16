@@ -305,79 +305,75 @@ String imagePath='https://bsmedia.business-standard.com/_media/bs/img/article/20
 
 // ..........listview Data at body ............//
   Widget _listdata() {
-    return ListView(
+    return Column(
       children: [
-        Column(
-          children: [
-            SizedBox(
-              height: 20,
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: TextField(
-                decoration: InputDecoration(
-                  // contentPadding: EdgeInsets.symmetric(vertical: 15),
-                  hintText: 'Search for the news,topics...',
-                  // border: InputBorder.none,
-                  border: OutlineInputBorder(
-                    // borderRadius: BorderRadius.circular(10.0),
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                  ),
-
-                  suffixIcon: Icon(
-                    Icons.search,
-                    color: Colors.grey,
-                  ),
-                  filled: true,
-                  fillColor: AppColors.secondaryLightGrey,
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Top HeadLines",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Text('Sort:'),
-                      Text(
-                        'Newest',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Icon(Icons.arrow_drop_down),
-                    ],
-                  )
-                ],
-              ),
-            ),
-            Container(
-                height: 500,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ListView.builder(
-                    // scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return _newsData();
-                    },
-                    itemCount: 50,
-                    shrinkWrap: true,
-                  ),
-                ))
-          ],
+        SizedBox(
+          height: 20,
+        ),
+       _searchbar(),
+      _headingPart(),
+        Expanded(
+          child: ListView.builder(
+            // scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return _newsData();
+            },
+            itemCount: 50,
+            shrinkWrap: true,
+          ),
         )
       ],
     );
   }
+Widget _searchbar(){
+  return  Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Search for the news,topics...',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                    ),
+  
+                    suffixIcon: Icon(
+                      Icons.search,
+                      color: Colors.grey,
+                    ),
+                    filled: true,
+                    fillColor: AppColors.secondaryLightGrey,
+                  ),
+                ),
+              );
+}
 
+Widget _headingPart(){
+  return   Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Top HeadLines",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        Text('Sort:'),
+                        Text(
+                          'Newest',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Icon(Icons.arrow_drop_down),
+                      ],
+                    )
+                  ],
+                ),
+              );
+}
   Widget _newsData() {
     return GestureDetector(
       onTap: () {
@@ -393,71 +389,62 @@ String imagePath='https://bsmedia.business-standard.com/_media/bs/img/article/20
        
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Expanded(
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            newsHeading,
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            'Music by Julie Gable.sfahgdghddgsagasg',
-                            // overflow: TextOverflow.ellipsis,
-                          
-                            // maxLines: 1,
-                            softWrap: false,
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 50),
-                      Row(
-                        children: [
-                          Text('10 min ago',
-                              style: TextStyle(fontSize: 10, color: Colors.grey)),
-                        ],
-                      )
-                    ],
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Container(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          newsHeading,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          height: 2,
+                        ),
+                        Text(
+                          'Music by Julie Gable hgfhhjhgdadgbadgsGsatSAcgfugigouopopoinoionomojmoghfufuiuiyhgg',
+                           overflow: TextOverflow.ellipsis,
+                           maxLines: 3,
+                        
+                          // maxLines: 1,
+                          softWrap: false,
+                        ),
+                        SizedBox(height: 50),
+                        Text('10 min ago',
+                            style: TextStyle(fontSize: 10, color: Colors.grey))
+                      ],
+                    ),
                   ),
-                  //                             Container(
-                  // height: 20,
-                  // width: 30,
-                  // color: Colors.red,
-                  //                             )
-                  Container(
-                      //https://www.fool.com.au/wp-content/uploads/2022/01/etf-16.9.jpg
-                      width: 100,
-                      height: 100,
-                      margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
-                          child:
-                              // Image(image: AssetImage('assets/images/samleimage.jpg'),
-                              Image.network(
-                            // 'https://www.fool.com.au/wp-content/uploads/2022/01/etf-16.9.jpg',
-                            'https://bsmedia.business-standard.com/_media/bs/img/article/2021-12/31/full/1640958034-2414.jpg',
-                            width: 200,
-                            height: 100,
-                            fit: BoxFit.cover,
-                          )
-                          )
-                          )
-                ]),
-          ),
+                ),
+                //                             Container(
+                // height: 20,
+                // width: 30,
+                // color: Colors.red,
+                //                             )
+                Container(
+                    //https://www.fool.com.au/wp-content/uploads/2022/01/etf-16.9.jpg
+                    width: 100,
+                    height: 100,
+                    margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child:
+                            // Image(image: AssetImage('assets/images/samleimage.jpg'),
+                            Image.network(
+                          // 'https://www.fool.com.au/wp-content/uploads/2022/01/etf-16.9.jpg',
+                          'https://bsmedia.business-standard.com/_media/bs/img/article/2021-12/31/full/1640958034-2414.jpg',
+                          width: 200,
+                          height: 100,
+                          fit: BoxFit.cover,
+                        )
+                        )
+                        )
+              ]),
         ),
       ),
     );
