@@ -2,11 +2,15 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
 import 'package:news_app/common_modules/AppColors.dart';
-
+import 'package:news_app/models/news_model_data.dart';
+import 'package:news_app/news_module/controllers/newscontroller.dart';
+import '../../apiservice/apiservice.dart';
 import 'news_details_page.dart';
-
+import 'package:get/get.dart';
 class NewsDashboardPage extends StatefulWidget {
-  const NewsDashboardPage({Key? key}) : super(key: key);
+   NewsDashboardPage({Key? key}) : super(key: key);
+  final    NewsController controller = Get.put(NewsController());
+
 
   @override
   State<NewsDashboardPage> createState() => _NewsDashboardPageState();
@@ -23,10 +27,8 @@ class _NewsDashboardPageState extends State<NewsDashboardPage> {
   bool value = false;
 // Default Radio Button Item
   String radioItem = 'India';
-
   // Group Value for Radio Button.
   int id = 1;
-
   List<CountriesList> CList = [
     CountriesList(
       index: 1,
@@ -66,9 +68,7 @@ class _NewsDashboardPageState extends State<NewsDashboardPage> {
     'News Source 6': false,
     // 'News Source 7': false,
   };
-
   var holder_1 = [];
-
   getItems() {
     newssources.forEach((key, value) {
       if (value == true) {
@@ -82,8 +82,7 @@ class _NewsDashboardPageState extends State<NewsDashboardPage> {
   }
 
   int _radioValue = 0;
-  
-  void _handleRadioValueChange(value) {
+    void _handleRadioValueChange(value) {
     setState(() {
       _radioValue = value;
     });
@@ -91,6 +90,14 @@ class _NewsDashboardPageState extends State<NewsDashboardPage> {
   /// passing the data to the other screen...............
 String newsHeading = 'NewsSource';
 String imagePath='https://bsmedia.business-standard.com/_media/bs/img/article/2021-12/31/full/1640958034-2414.jpg';
+
+void initState() {
+  super.initState();
+  // for testing the data ...............//
+ NewsApiServices().fetchNewsArticle();
+ NewsController().getNewsArticles();
+}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -393,12 +400,24 @@ Widget _headingPart(){
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+
+ // ..........GetBuilder Start................//
+                GetBuilder<NewsController>(
+                   init:NewsController(),
+                  builder: (controller){
+                    return Text(controller.newsList[index].author.toString());
+
+                  }
+                  ),
+             //..............getBuilder closes..................//
+ 
                 Expanded(
                   child: Container(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                      
                         Text(
                           newsHeading,
                           style: TextStyle(fontWeight: FontWeight.bold),
@@ -421,11 +440,7 @@ Widget _headingPart(){
                     ),
                   ),
                 ),
-                //                             Container(
-                // height: 20,
-                // width: 30,
-                // color: Colors.red,
-                //                             )
+               
                 Container(
                     //https://www.fool.com.au/wp-content/uploads/2022/01/etf-16.9.jpg
                     width: 100,
