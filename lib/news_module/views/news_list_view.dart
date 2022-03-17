@@ -9,7 +9,7 @@ import 'news_details_page.dart';
 import 'package:get/get.dart';
 class NewsDashboardPage extends StatefulWidget {
    NewsDashboardPage({Key? key}) : super(key: key);
-   final    NewsController controller = Get.put(NewsController());
+  //  final    NewsController controller = Get.put(NewsController());
 
 
   @override
@@ -334,21 +334,48 @@ void initState() {
            Expanded(
          child:   GetBuilder<NewsController>(
                    init:NewsController(),
-                  builder: (controller){
+
+
+ builder: (controller){
                     return ListView.builder(
-                       itemCount:10,
-                      //  itemCount: controller.newsList.length,
+                        //  itemCount:10,
+                          itemCount: controller.newsList.length,
                       itemBuilder: (context,index){
                          return 
-                        //  _newsData(index,controller);
-                        // Text("hello");
-                     Text(controller.newsList[index].author.toString());
+                            _newsData(index,controller);
+                          // Text("testing");
+                      //  Text(controller.newsList[index].author.toString());
                       },
                       );
 
                   }
+
+
+
+
+//  builder: (controller) => controller.isLoading
+//                     ? CircularProgressIndicator()
+//                     : ListView.builder(
+
+//                         // itemCount: controller.newsList.length,
+//                         itemCount: 10,
+//                       itemBuilder: (context,index){
+//                          return 
+//                           // _newsData(index,controller);
+//                          Text("hello");
+//                     //  Text(controller.newsList[index].author.toString());
+//                       },
+
+
+
+//                     ),
+              ),
+
+
+                 
                   ),
-        )
+        
+      
       ],
     );
   }
@@ -465,30 +492,33 @@ Widget _headingPart(){
                   ),
                 ),
                
-         /*        Container(
+              /*    Container(
                     //https://www.fool.com.au/wp-content/uploads/2022/01/etf-16.9.jpg
-                    width: 100,
-                    height: 100,
+                      width: 100,
+                     height: 100,
                     margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
                         child:
-                            // Image(image: AssetImage('assets/images/samleimage.jpg'),
+                            //  Image(image: AssetImage('assets/images/samleimage.jpg'),
                             Image.network(
                               
-                                //  controller.newsList[index].urlToImage.toString(),
+                                    // controller.newsList[index].urlToImage.toString(),
                           //  'https://www.fool.com.au/wp-content/uploads/2022/01/etf-16.9.jpg',
-                            'https://bsmedia.business-standard.com/_media/bs/img/article/2021-12/31/full/1640958034-2414.jpg',
+                               'https://bsmedia.business-standard.com/_media/bs/img/article/2021-12/31/full/1640958034-2414.jpg',
                            width: 200,
                            height: 100,
                            fit: BoxFit.cover,
                         )
                         )
-                        ) */
-/* Container(
+                        )  */
+ Container(
+   height: 100,
+    // width: 150,
   child: controller.newsList[index].urlToImage != null
             ? Container(
-                width: 100,
+               height: 150,
+    width: 150,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   image: DecorationImage(
@@ -500,7 +530,7 @@ Widget _headingPart(){
       ),
    
 
- */
+ 
               ]),
         ),
       ),
