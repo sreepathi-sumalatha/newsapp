@@ -18,7 +18,12 @@ class NewsController extends GetxController{
       // var newsList = await NewsApiServices.fetchNewsArticle();
      var newsdata = await NewsApiServices().fetchNewsArticle();
      print("newsresults:$newsdata");
-      if(newsdata!=null){
+
+
+    
+
+// if (newsdata != null && newsdata.length != 0) 
+      if(newsdata != null && newsdata.length != 0){
       newsList.assignAll(newsdata);
       print("newsdataresult:$newsList");
       }
