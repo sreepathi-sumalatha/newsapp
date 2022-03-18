@@ -2,15 +2,19 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
 import 'package:news_app/common_modules/AppColors.dart';
-import 'package:news_app/models/news_model_data.dart';
 import 'package:news_app/news_module/controllers/newscontroller.dart';
+import 'package:news_app/news_module/views/search_bar.dart';
+import 'package:news_app/news_module/views/test.dart';
+import '../controllers/newscontroller.dart';
 import 'news_details_page.dart';
 import 'package:get/get.dart';
+
+import 'news_heading.dart';
 
 class NewsDashboardPage extends StatefulWidget {
   NewsDashboardPage({Key? key}) : super(key: key);
   final NewsController controller = Get.put(NewsController());
-  List<NewsResponse> newsList = [];
+
   @override
   State<NewsDashboardPage> createState() => _NewsDashboardPageState();
 }
@@ -179,18 +183,22 @@ Widget _listdata() {
         SizedBox(
           height: 20,
         ),
-        _searchbar(),
-        _headingPart(),
+        // _searchbar(),
+          // TestSample(),
+          SearchBar(),
+        HeadingText(),
+      
         Expanded(
           child: GetBuilder<NewsController>(
               init: NewsController(),
               builder: (controller) {
                 return ListView.builder(
-                  //  itemCount:10,
-                  itemCount: controller.newsList.length,
+                    // itemCount:10,
+                   itemCount: controller.newsList.length,
                   itemBuilder: (context, index) {
-                    return _newsData(index, controller);
-                    //  Text("testing");
+                    return 
+                     _newsData(index, controller);
+                      // Text("testing");
                     // Text(controller.newsList[index].author.toString());
                   },
                 );
@@ -270,6 +278,7 @@ Widget _listdata() {
   }
 
   /* ......radio buttons c............... */
+
 Widget _radioButtons() {
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -368,55 +377,9 @@ Widget _radioButtons() {
       ),
     );
   }
-    Widget _searchbar() {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20),
-      child: TextField(
-        decoration: InputDecoration(
-          hintText: 'Search for the news,topics...',
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(15)),
-          ),
-          suffixIcon: Icon(
-            Icons.search,
-            color: Colors.grey,
-          ),
-          filled: true,
-          fillColor: AppColors.secondaryLightGrey,
-        ),
-      ),
-    );
-  }
+   
 
-  Widget _headingPart() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            "Top HeadLines",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          Row(
-            children: [
-              Text('Sort:'),
-              Text(
-                'Newest',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Icon(Icons.arrow_drop_down),
-            ],
-          )
-        ],
-      ),
-    );
-  }
-
+  
  
 // ............floatingaction code.........//
   Widget _floatingbuttoncode() {

@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/models/news_model_data.dart';
+import 'package:get/get.dart';
+import 'package:news_app/news_module/controllers/newscontroller.dart';
+
+import '../controllers/newscontroller.dart';
+
 class NewsDetailsScreen extends StatefulWidget {
  
-   final NewsResponse passingNewsData;
-  
+   final Article passingNewsData;
+    //  final NewsController = Get.find<NewsController>();
+
 
    NewsDetailsScreen({ Key? key,  required this.passingNewsData  }) : super(key: key);
    
@@ -12,13 +18,13 @@ class NewsDetailsScreen extends StatefulWidget {
 
   @override
   State<NewsDetailsScreen> createState() => _NewsDetailsScreenState(
-       passingNewsData
+        passingNewsData
     );
 }
 
 class _NewsDetailsScreenState extends State<NewsDetailsScreen> {
 //  late String NewsTitle;
-NewsResponse passingNewsData;
+Article passingNewsData;
   _NewsDetailsScreenState(this.passingNewsData);
 void initState() {
   super.initState();
@@ -36,15 +42,41 @@ void initState() {
       body: Container(
         child: ListView(
           children: [
-            Container(
-              height:100,
-               width: 120,
-              color: Colors.teal,
-            ),
+           Container(
+                          height: 150,
+                          width: 150,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                  passingNewsData.urlToImage.toString()),
+                            ),
+                          ),
+                        ),
+            SizedBox(height:10),
             // _imageDisplay(),
-            // Text(passingNewsData.articles!.length.toString()),
-            _headingNews(),
-            _newsTime(),
+             Text(passingNewsData.author.toString(),
+              overflow: TextOverflow.ellipsis,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+             
+             
+             ),
+              Text(passingNewsData.author.toString(),
+              overflow: TextOverflow.ellipsis,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+             
+             
+             ),
+              Container(
+                child: Text(passingNewsData.description.toString(),
+                // overflow: TextOverflow.ellipsis,
+                           
+             
+             
+             ),
+              ),
+            // _headingNews(),
+            // _newsTime(),
           ],
         ),
 // child: ListView.builder(
