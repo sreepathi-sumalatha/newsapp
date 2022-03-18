@@ -1,28 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/models/news_model_data.dart';
 class NewsDetailsScreen extends StatefulWidget {
-  // final NewsResponse passingNewsData;
+ 
+   final NewsResponse passingNewsData;
   
 
-   NewsDetailsScreen({ Key? key,
+   NewsDetailsScreen({ Key? key,  required this.passingNewsData  }) : super(key: key);
+   
  
-    // required this.passingNewsData
-    }) : super(key: key);
+   
 
   @override
   State<NewsDetailsScreen> createState() => _NewsDetailsScreenState(
-    //  passingNewsData
+       passingNewsData
     );
 }
 
 class _NewsDetailsScreenState extends State<NewsDetailsScreen> {
 //  late String NewsTitle;
-// NewsResponse passingNewsData;
-//   _NewsDetailsScreenState(this.passingNewsData);
+NewsResponse passingNewsData;
+  _NewsDetailsScreenState(this.passingNewsData);
 void initState() {
   super.initState();
   // for testing the data ...............//
-// print("passingdata:$passingNewsData"); 
+ print("passingdata:$passingNewsData"); 
  
 } 
 
@@ -33,19 +34,19 @@ void initState() {
         title: Text("News Details Screen"),
       ),
       body: Container(
-        // child: ListView(
-        //   children: [
-        //     Container(
-        //       height:100,
-        //       // width: 120,
-        //       color: Colors.teal,
-        //     ),
-        //     // _imageDisplay(),
-        //     Text(widget.passingNewsData.articles[index].author.toString()),
-        //     _headingNews(),
-        //     _newsTime(),
-        //   ],
-        // ),
+        child: ListView(
+          children: [
+            Container(
+              height:100,
+               width: 120,
+              color: Colors.teal,
+            ),
+            // _imageDisplay(),
+            // Text(passingNewsData.articles!.length.toString()),
+            _headingNews(),
+            _newsTime(),
+          ],
+        ),
 // child: ListView.builder(
 //   itemCount:passingNewsData.articles!.length,
 //   itemBuilder: (context,index){

@@ -99,7 +99,7 @@ class _NewsDashboardPageState extends State<NewsDashboardPage> {
   }
 
 //.............AppBar code................//
-  AppBar _appBar() {
+AppBar _appBar() {
     return AppBar(
       backgroundColor: AppColors.primaryBlue,
       leadingWidth: 75,
@@ -172,8 +172,105 @@ class _NewsDashboardPageState extends State<NewsDashboardPage> {
       ],
     );
   }
+  /* ...........list data........... */
+Widget _listdata() {
+    return Column(
+      children: [
+        SizedBox(
+          height: 20,
+        ),
+        _searchbar(),
+        _headingPart(),
+        Expanded(
+          child: GetBuilder<NewsController>(
+              init: NewsController(),
+              builder: (controller) {
+                return ListView.builder(
+                  //  itemCount:10,
+                  itemCount: controller.newsList.length,
+                  itemBuilder: (context, index) {
+                    return _newsData(index, controller);
+                    //  Text("testing");
+                    // Text(controller.newsList[index].author.toString());
+                  },
+                );
+              }),
+        ),
+      ],
+    );
+  }
+  // .........newsData.............//
+   Widget _newsData(index, controller) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => NewsDetailsScreen(
+                    passingNewsData:controller.newsList[index],
 
-  Widget _radioButtons() {
+                  )),
+        );
+      },
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Container(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          controller.newsList[index].author.toString(),
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          height: 2,
+                        ),
+                        Text(
+                          controller.newsList[index].description.toString(),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 3,
+                          softWrap: false,
+                        ),
+                        SizedBox(height: 50),
+                        Text('10 min ago',
+                            style: TextStyle(fontSize: 10, color: Colors.grey))
+                      ],
+                    ),
+                  ),
+                ),
+                Container(
+                  height: 100,
+                  width: 150,
+                  child: controller.newsList[index].urlToImage != null
+                      ? Container(
+                          height: 150,
+                          width: 150,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                  controller.newsList[index].urlToImage),
+                            ),
+                          ),
+                        )
+                      : null,
+                ),
+              ]),
+        ),
+      ),
+    );
+  }
+
+  /* ......radio buttons c............... */
+Widget _radioButtons() {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -271,36 +368,7 @@ class _NewsDashboardPageState extends State<NewsDashboardPage> {
       ),
     );
   }
-
-// ..........listview Data at body ............//
-  Widget _listdata() {
-    return Column(
-      children: [
-        SizedBox(
-          height: 20,
-        ),
-        _searchbar(),
-        _headingPart(),
-        Expanded(
-          child: GetBuilder<NewsController>(
-              init: NewsController(),
-              builder: (controller) {
-                return ListView.builder(
-                  //  itemCount:10,
-                  itemCount: controller.newsList.length,
-                  itemBuilder: (context, index) {
-                    return _newsData(index, controller);
-                    //  Text("testing");
-                    // Text(controller.newsList[index].author.toString());
-                  },
-                );
-              }),
-        ),
-      ],
-    );
-  }
-
-  Widget _searchbar() {
+    Widget _searchbar() {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: TextField(
@@ -349,75 +417,7 @@ class _NewsDashboardPageState extends State<NewsDashboardPage> {
     );
   }
 
-  Widget _newsData(index, controller) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => NewsDetailsScreen(
-                  //  passingNewsData:controller.newsList[index],
-
-                  )),
-        );
-      },
-      child: Card(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: Container(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          controller.newsList[index].author.toString(),
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(
-                          height: 2,
-                        ),
-                        Text(
-                          controller.newsList[index].description.toString(),
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 3,
-                          softWrap: false,
-                        ),
-                        SizedBox(height: 50),
-                        Text('10 min ago',
-                            style: TextStyle(fontSize: 10, color: Colors.grey))
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  height: 100,
-                  width: 150,
-                  child: controller.newsList[index].urlToImage != null
-                      ? Container(
-                          height: 150,
-                          width: 150,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            image: DecorationImage(
-                              image: NetworkImage(
-                                  controller.newsList[index].urlToImage),
-                            ),
-                          ),
-                        )
-                      : null,
-                ),
-              ]),
-        ),
-      ),
-    );
-  }
-
+ 
 // ............floatingaction code.........//
   Widget _floatingbuttoncode() {
     return FloatingActionButton(
