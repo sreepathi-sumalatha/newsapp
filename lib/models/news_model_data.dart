@@ -1,14 +1,12 @@
 class NewsResponse {
-  NewsResponse({
+   String? status;
+  int? totalResults;
+  List<Article>? articles;
+   NewsResponse({
     this.status,
     this.totalResults,
     this.articles,
   });
-
-  String? status;
-  int? totalResults;
-  List<Article>? articles;
-
   factory NewsResponse.fromJson(Map<String, dynamic> json) => NewsResponse(
         status: json["status"],
         totalResults: json["totalResults"],

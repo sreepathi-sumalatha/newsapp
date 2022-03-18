@@ -1,76 +1,84 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/models/news_model_data.dart';
 class NewsDetailsScreen extends StatefulWidget {
-  final  String NewsTitle;
-    final  String imageLink;
+  // final NewsResponse passingNewsData;
+  
 
-   NewsDetailsScreen({ Key? key,required this.NewsTitle,required this.imageLink }) : super(key: key);
+   NewsDetailsScreen({ Key? key,
+ 
+    // required this.passingNewsData
+    }) : super(key: key);
 
   @override
-  State<NewsDetailsScreen> createState() => _NewsDetailsScreenState(NewsTitle);
+  State<NewsDetailsScreen> createState() => _NewsDetailsScreenState(
+    //  passingNewsData
+    );
 }
 
 class _NewsDetailsScreenState extends State<NewsDetailsScreen> {
- late String NewsTitle;
+//  late String NewsTitle;
+// NewsResponse passingNewsData;
+//   _NewsDetailsScreenState(this.passingNewsData);
+void initState() {
+  super.initState();
+  // for testing the data ...............//
+// print("passingdata:$passingNewsData"); 
+ 
+} 
 
-  _NewsDetailsScreenState(String NewsTitle);
-  @override
+ @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Container(
-       child: Column(
-        //  mainAxisAlignment: MainAxisAlignment.start,
-         crossAxisAlignment: CrossAxisAlignment.start,
-         children: [
-         Container(
-            //  height:180,
-          //  width: 200,
-          //  color: Colors.red,
-           child:  Image.network(widget.imageLink,
-                              // 'https://www.fool.com.au/wp-content/uploads/2022/01/etf-16.9.jpg',
-                              // 'https://bsmedia.business-standard.com/_media/bs/img/article/2021-12/31/full/1640958034-2414.jpg',
-                              // width: 200,
-                              // height: 100,
-                              //  fit: BoxFit.fill,
-                            ),
-         ),
-         SizedBox(
-           height: 10,
-         ),
-         Container(
-           child: Padding(
-             padding: const EdgeInsets.all(8.0),
-             child: Column(
-              //  mainAxisAlignment: MainAxisAlignment.start,
-               crossAxisAlignment: CrossAxisAlignment.start,
-               children: [
-  Text(widget.NewsTitle,
-  style: TextStyle(fontWeight: FontWeight.bold,
-  
-  fontSize: 15
-  )
-  
-  ),
-        SizedBox(height:5,),
-         Text(" 22 sep,2020 4:40PM",
-         style: TextStyle(
-           fontSize: 10,
-           color:Colors.grey
-         )
-         )
-
-             ]),
-           ),
-         ),
-        //  Container(
-        //    child: Column(children: [
-        //      Text("Hello")
-        //    ]),
-        //  )
-      
-       ]),
+      appBar: AppBar(
+        title: Text("News Details Screen"),
       ),
+      body: Container(
+        // child: ListView(
+        //   children: [
+        //     Container(
+        //       height:100,
+        //       // width: 120,
+        //       color: Colors.teal,
+        //     ),
+        //     // _imageDisplay(),
+        //     Text(widget.passingNewsData.articles[index].author.toString()),
+        //     _headingNews(),
+        //     _newsTime(),
+        //   ],
+        // ),
+// child: ListView.builder(
+//   itemCount:passingNewsData.articles!.length,
+//   itemBuilder: (context,index){
+//     return             Text(widget.passingNewsData.articles![index].author.toString());
+
+
+//   }
+  
+  
+  
+  
+//   ),
+
+
+
+      )
       
     );
   }
+
+
+Widget _headingNews(){
+  return Text("Here News Heading");
+}
+Widget _newsTime(){
+  return Text("Here News  time");
+}
+
+
+
+
+
+
+
+
 }

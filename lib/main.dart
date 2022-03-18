@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// import 'news_module/views/articles_display.dart';
+import 'news_module/views/news_details_page.dart';
 import 'news_module/views/news_list_view.dart';
 // ignore_for_file: prefer_const_constructors
 void main() {
@@ -19,7 +21,10 @@ class MyApp extends StatelessWidget {
       
         primarySwatch: Colors.blue,
       ),
-      home:  NewsDashboardPage (),
+      home: 
+      // SampleArticles(),
+      // NewsDetailsScreen(),
+         NewsDashboardPage (),
     );
   }
 }

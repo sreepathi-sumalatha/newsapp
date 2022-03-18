@@ -1,17 +1,16 @@
-// ignore_for_file: avoid_unnecessary_containers
+// ignore_for_file: avoid_unnecessary_containers, unused_local_variable
 // ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
 import 'package:news_app/common_modules/AppColors.dart';
 import 'package:news_app/models/news_model_data.dart';
 import 'package:news_app/news_module/controllers/newscontroller.dart';
-import '../../apiservice/apiservice.dart';
 import 'news_details_page.dart';
 import 'package:get/get.dart';
+
 class NewsDashboardPage extends StatefulWidget {
-   NewsDashboardPage({Key? key}) : super(key: key);
-  //  final    NewsController controller = Get.put(NewsController());
-
-
+  NewsDashboardPage({Key? key}) : super(key: key);
+  final NewsController controller = Get.put(NewsController());
+  List<NewsResponse> newsList = [];
   @override
   State<NewsDashboardPage> createState() => _NewsDashboardPageState();
 }
@@ -66,7 +65,6 @@ class _NewsDashboardPageState extends State<NewsDashboardPage> {
     'News Source 4': false,
     'News Source 5': false,
     'News Source 6': false,
-    // 'News Source 7': false,
   };
   var holder_1 = [];
   getItems() {
@@ -78,37 +76,24 @@ class _NewsDashboardPageState extends State<NewsDashboardPage> {
 
     // Clear array after use.
     holder_1.clear();
-    //  locations_1.clear();
   }
-
   int _radioValue = 0;
-    void _handleRadioValueChange(value) {
+  void _handleRadioValueChange(value) {
     setState(() {
       _radioValue = value;
     });
   }
-  /// passing the data to the other screen...............
-String newsHeading = 'NewsSource';
-String imagePath='https://bsmedia.business-standard.com/_media/bs/img/article/2021-12/31/full/1640958034-2414.jpg';
 
-void initState() {
-  super.initState();
-  // for testing the data ...............//
- NewsApiServices().fetchNewsArticle();
- NewsController().getNewsArticles();
- 
- 
-}
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.secondaryLightGrey,
-      // backgroundColor:Colors.blue,
       appBar: _appBar(),
-
       body: _listdata(),
-
       floatingActionButton: _floatingbuttoncode(),
     );
   }
@@ -125,8 +110,6 @@ void initState() {
           fontSize: 15,
         ),
       )),
-
-      // actions: <Widget>[new Icon(Icons.more_vert)],
       actions: <Widget>[
         Padding(
           padding: const EdgeInsets.all(8.0),
@@ -136,8 +119,6 @@ void initState() {
               GestureDetector(
                 onTap: () {
                   showModalBottomSheet(
-  //                   isScrollControlled: true,
-  // isDismissible: true,
                     context: context,
                     builder: (context) {
                       return Column(
@@ -192,125 +173,104 @@ void initState() {
     );
   }
 
-
-  Widget _radioButtons(){
-    return  Padding(
+  Widget _radioButtons() {
+    return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        
         child: Column(
-                                children: [
-                                  Row(
-                                    
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text("Nepal"),
-                                      Radio(
-                                                  // fillColor: MaterialStateColor.resolveWith((states) => Colors.red),
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("Nepal"),
+                Radio(
+                  // fillColor: MaterialStateColor.resolveWith((states) => Colors.red),
 
-                                        value: 0,
-                                        groupValue: _radioValue,
-                                        
-                                        onChanged: (value) {
-                                          // setState(() {
-                                          //   _radioValue = value;
-                                          // });
-                                          _handleRadioValueChange(value);
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  value: 0,
+                  groupValue: _radioValue,
 
-                                    children: [
-                                      Text("USA"),
-                                      Radio(
-                                        value: 1,
-                                        groupValue: _radioValue,
-                                        onChanged: (value) {
-                                          // setState(() {
-                                          //   _radioValue = value;
-                                          // });
-                                          _handleRadioValueChange(value);
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                    Row(
-                                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-                                    children: [
-                                      Text("India"),
-                                      Radio(
-                                        value: 2,
-                                        groupValue: _radioValue,
-                                        onChanged: (value) {
-                                          // setState(() {
-                                          //   _radioValue = value;
-                                          // });
-                                          _handleRadioValueChange(value);
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                    Row(
-                                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-                                    children: [
-                                      Text("Sri Lanka"),
-                                      Radio(
-                                        value: 3,
-                                        groupValue: _radioValue,
-                                        onChanged: (value) {
-                                          // setState(() {
-                                          //   _radioValue = value;
-                                          // });
-                                          _handleRadioValueChange(value);
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                    Row(
-                                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-                                    children: [
-                                      Text("England"),
-                                      Radio(
-                                        value: 4,
-                                        groupValue: _radioValue,
-                                        onChanged: (value) {
-                                          // setState(() {
-                                          //   _radioValue = value;
-                                          // });
-                                          _handleRadioValueChange(value);
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text("Sweden"),
-                                      Radio(
-                                        value: 5,
-                                        groupValue: _radioValue,
-                                        onChanged: (value) {
-                                          // setState(() {
-                                          //   _radioValue = value;
-                                          // });
-                                          _handleRadioValueChange(value);
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                  
-                                ],
-                              ),
+                  onChanged: (value) {
+                    _handleRadioValueChange(value);
+                  },
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("USA"),
+                Radio(
+                  value: 1,
+                  groupValue: _radioValue,
+                  onChanged: (value) {
+                    _handleRadioValueChange(value);
+                  },
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("India"),
+                Radio(
+                  value: 2,
+                  groupValue: _radioValue,
+                  onChanged: (value) {
+                    // setState(() {
+                    //   _radioValue = value;
+                    // });
+                    _handleRadioValueChange(value);
+                  },
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("Sri Lanka"),
+                Radio(
+                  value: 3,
+                  groupValue: _radioValue,
+                  onChanged: (value) {
+                    _handleRadioValueChange(value);
+                  },
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("England"),
+                Radio(
+                  value: 4,
+                  groupValue: _radioValue,
+                  onChanged: (value) {
+                    _handleRadioValueChange(value);
+                  },
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("Sweden"),
+                Radio(
+                  value: 5,
+                  groupValue: _radioValue,
+                  onChanged: (value) {
+                    // setState(() {
+                    //   _radioValue = value;
+                    // });
+                    _handleRadioValueChange(value);
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
-//........location bottom sheet code..........//
 
 // ..........listview Data at body ............//
   Widget _listdata() {
@@ -319,169 +279,113 @@ void initState() {
         SizedBox(
           height: 20,
         ),
-       _searchbar(),
-      _headingPart(),
-      /*   Expanded(
-          child: ListView.builder(
-            // scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              return _newsData();
-            },
-            itemCount: 50,
-            shrinkWrap: true,
-          ),
-        ) */
-           Expanded(
-         child:   GetBuilder<NewsController>(
-                   init:NewsController(),
-
-
- builder: (controller){
-                    return ListView.builder(
-                        //  itemCount:10,
-                          itemCount: controller.newsList.length,
-                      itemBuilder: (context,index){
-                         return 
-                            _newsData(index,controller);
-                          // Text("testing");
-                      //  Text(controller.newsList[index].author.toString());
-                      },
-                      );
-
-                  }
-
-
-
-
-//  builder: (controller) => controller.isLoading
-//                     ? CircularProgressIndicator()
-//                     : ListView.builder(
-
-//                         // itemCount: controller.newsList.length,
-//                         itemCount: 10,
-//                       itemBuilder: (context,index){
-//                          return 
-//                           // _newsData(index,controller);
-//                          Text("hello");
-//                     //  Text(controller.newsList[index].author.toString());
-//                       },
-
-
-
-//                     ),
-              ),
-
-
-                 
-                  ),
-        
-      
+        _searchbar(),
+        _headingPart(),
+        Expanded(
+          child: GetBuilder<NewsController>(
+              init: NewsController(),
+              builder: (controller) {
+                return ListView.builder(
+                  //  itemCount:10,
+                  itemCount: controller.newsList.length,
+                  itemBuilder: (context, index) {
+                    return _newsData(index, controller);
+                    //  Text("testing");
+                    // Text(controller.newsList[index].author.toString());
+                  },
+                );
+              }),
+        ),
       ],
     );
   }
-Widget _searchbar(){
-  return  Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: TextField(
-                  decoration: InputDecoration(
-                    hintText: 'Search for the news,topics...',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
-                    ),
-  
-                    suffixIcon: Icon(
-                      Icons.search,
-                      color: Colors.grey,
-                    ),
-                    filled: true,
-                    fillColor: AppColors.secondaryLightGrey,
-                  ),
-                ),
-              );
-}
 
-Widget _headingPart(){
-  return   Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Top HeadLines",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        Text('Sort:'),
-                        Text(
-                          'Newest',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Icon(Icons.arrow_drop_down),
-                      ],
-                    )
-                  ],
+  Widget _searchbar() {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20),
+      child: TextField(
+        decoration: InputDecoration(
+          hintText: 'Search for the news,topics...',
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(15)),
+          ),
+          suffixIcon: Icon(
+            Icons.search,
+            color: Colors.grey,
+          ),
+          filled: true,
+          fillColor: AppColors.secondaryLightGrey,
+        ),
+      ),
+    );
+  }
+
+  Widget _headingPart() {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            "Top HeadLines",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          Row(
+            children: [
+              Text('Sort:'),
+              Text(
+                'Newest',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
                 ),
-              );
-}
-  Widget _newsData(index,controller) {
+              ),
+              Icon(Icons.arrow_drop_down),
+            ],
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _newsData(index, controller) {
     return GestureDetector(
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) =>  NewsDetailsScreen(
-            NewsTitle: newsHeading,
-            imageLink: imagePath,
-          )),
+          MaterialPageRoute(
+              builder: (context) => NewsDetailsScreen(
+                  //  passingNewsData:controller.newsList[index],
+
+                  )),
         );
       },
       child: Card(
-       
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
- // ..........GetBuilder Start................//
-                // GetBuilder<NewsController>(
-                //    init:NewsController(),
-                //   builder: (controller){
-                //     return Text(controller.newsList[index].author.toString());
-
-                //   }
-                //   ),
-             //..............getBuilder closes..................//
- 
                 Expanded(
                   child: Container(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                      
                         Text(
-                          // newsHeading,
                           controller.newsList[index].author.toString(),
-                           overflow: TextOverflow.ellipsis,
+                          overflow: TextOverflow.ellipsis,
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         SizedBox(
                           height: 2,
                         ),
                         Text(
-                          
-                           controller.newsList[index].description.toString(),
-                          // 'Music by Julie Gable hgfhhjhgdadgbadgsGsatSAcgfugigouopopoinoionomojmoghfufuiuiyhgg',
-                           overflow: TextOverflow.ellipsis,
-                           maxLines: 3,
-                        
-                          // maxLines: 1,
+                          controller.newsList[index].description.toString(),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 3,
                           softWrap: false,
                         ),
                         SizedBox(height: 50),
@@ -491,46 +395,23 @@ Widget _headingPart(){
                     ),
                   ),
                 ),
-               
-              /*    Container(
-                    //https://www.fool.com.au/wp-content/uploads/2022/01/etf-16.9.jpg
-                      width: 100,
-                     height: 100,
-                    margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                    child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child:
-                            //  Image(image: AssetImage('assets/images/samleimage.jpg'),
-                            Image.network(
-                              
-                                    // controller.newsList[index].urlToImage.toString(),
-                          //  'https://www.fool.com.au/wp-content/uploads/2022/01/etf-16.9.jpg',
-                               'https://bsmedia.business-standard.com/_media/bs/img/article/2021-12/31/full/1640958034-2414.jpg',
-                           width: 200,
-                           height: 100,
-                           fit: BoxFit.cover,
+                Container(
+                  height: 100,
+                  width: 150,
+                  child: controller.newsList[index].urlToImage != null
+                      ? Container(
+                          height: 150,
+                          width: 150,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                  controller.newsList[index].urlToImage),
+                            ),
+                          ),
                         )
-                        )
-                        )  */
- Container(
-   height: 100,
-    // width: 150,
-  child: controller.newsList[index].urlToImage != null
-            ? Container(
-               height: 150,
-    width: 150,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  image: DecorationImage(
-                    image: NetworkImage(controller.newsList[index].urlToImage),
-                  ),
+                      : null,
                 ),
-              )
-            : null,
-      ),
-   
-
- 
               ]),
         ),
       ),
@@ -541,26 +422,12 @@ Widget _headingPart(){
   Widget _floatingbuttoncode() {
     return FloatingActionButton(
       onPressed: () {
-        // Add your onPressed code here!
         showModalBottomSheet(
           context: context,
           builder: (context) {
             return Container(
-              // height: 200,
-              // width: double.infinity,
               color: Colors.grey.shade200,
               alignment: Alignment.center,
-              // child: ElevatedButton(
-              //   child: Text("Apply Filter"),
-              //   style: ElevatedButton.styleFrom(
-              //     onPrimary: Colors.white,
-              //     primary:AppColors.primaryBlue,
-
-              //   ),
-              //   onPressed: () {
-              //     Navigator.of(context).pop();
-              //   },
-              // ),
               child: Column(children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
