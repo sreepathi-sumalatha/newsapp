@@ -78,17 +78,7 @@ class _NewsAppBarState extends State<NewsAppBar> {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor: AppColors.primaryBlue,
-      leadingWidth: 75,
-      leading: const Center(
-          child: Text(
-        'MyNEWS',
-        style: TextStyle(
-          fontSize: 15,
-        ),
-      )),
-      actions: <Widget>[
+    return 
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -146,9 +136,7 @@ class _NewsAppBarState extends State<NewsAppBar> {
               )
             ],
           ),
-        )
-      ],
-    );
+        );
   }
 Widget _radioButtons() {
     return Padding(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/models/news_model.dart';
 import 'package:news_app/models/news_model_data.dart';
 import 'package:get/get.dart';
 import 'package:news_app/news_module/controllers/newscontroller.dart';
@@ -8,7 +9,9 @@ import '../controllers/newscontroller.dart';
 class NewsDetailsScreen extends StatefulWidget {
  
    final Article passingNewsData;
-    //  final NewsController = Get.find<NewsController>();
+      // final NewsModel passingNewsData;
+
+      // final NewsController = Get.find<NewsController>();
 
 
    NewsDetailsScreen({ Key? key,  required this.passingNewsData  }) : super(key: key);
@@ -49,7 +52,10 @@ void initState() {
                             borderRadius: BorderRadius.circular(20),
                             image: DecorationImage(
                               image: NetworkImage(
-                                  passingNewsData.urlToImage.toString()),
+
+                                   passingNewsData.urlToImage.toString()
+                                  
+                                  ),
                             ),
                           ),
                         ),

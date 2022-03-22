@@ -2,14 +2,14 @@
 //
 //     final newsModel = newsModelFromJson(jsonString);
 
-import 'dart:convert';
+/* import 'dart:convert';
 
-List<NewsModel> newsModelFromJson(String str) => List<NewsModel>.from(json.decode(str).map((x) => NewsModel.fromJson(x)));
+List<NewsModelData> newsModelFromJson(String str) => List<NewsModelData>.from(json.decode(str).map((x) => NewsModelData.fromJson(x)));
 
-String newsModelToJson(List<NewsModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String newsModelToJson(List<NewsModelData> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class NewsModel {
-    NewsModel({
+class NewsModelData {
+    NewsModelData({
         this.id,
         this.brand,
         this.name,
@@ -51,7 +51,7 @@ class NewsModel {
     String? apiFeaturedImage;
     List<ProductColor>? productColors;
 
-    factory NewsModel.fromJson(Map<String, dynamic> json) => NewsModel(
+    factory NewsModelData.fromJson(Map<String, dynamic> json) => NewsModelData(
         id: json["id"],
         brand: json["brand"],
         name: json["name"],
@@ -138,3 +138,4 @@ class EnumValues<T> {
         return reverseMap;
     }
 }
+ */
