@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+// import 'package:news_app/pages/home.dart';
+import 'package:news_app/pages/news_dashboard.dart';
 
 // import 'news_module/views/articles_display.dart';
 import 'news_module/views/news_details_page.dart';
@@ -22,9 +24,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: 
-      // SampleArticles(),
       // NewsDetailsScreen(),
          NewsDashboardPage (),
+          // HomeNews(),
     );
   }
 }

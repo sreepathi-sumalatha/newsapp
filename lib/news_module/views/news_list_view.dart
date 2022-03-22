@@ -2,21 +2,18 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
 import 'package:news_app/common_modules/AppColors.dart';
-import 'package:news_app/news_module/controllers/newscontroller.dart';
 import 'package:news_app/news_module/views/search_bar.dart';
-import '../../apiservice/apiservice.dart';
-import '../../common_modules/loggerfile.dart';
-import '../controllers/newscontroller.dart';
+import '../../pages/news_list.dart';
+import '../controllers/home_controller.dart';
 import 'appbar.dart';
 import 'floating_button.dart';
 import 'package:get/get.dart';
-
 import 'news_heading.dart';
 
 class NewsDashboardPage extends StatefulWidget {
   NewsDashboardPage({Key? key}) : super(key: key);
-  final NewsController controller = Get.put(NewsController());
-  //  final newscontroller = Get.find<NewsController>();
+   final HomeNewsController controller = Get.put(HomeNewsController());
+  final homeNewsController = Get.find<HomeNewsController>();
 
   @override
   State<NewsDashboardPage> createState() => _NewsDashboardPageState();
@@ -28,7 +25,7 @@ class _NewsDashboardPageState extends State<NewsDashboardPage> {
   void initState() {
     // for testing the data.........
     // NewsApiServices().fetchNewsArticle();
-// NewsController().getNewsArticles();
+ HomeNewsController().getNews();
     super.initState();
 
   }
@@ -37,7 +34,8 @@ class _NewsDashboardPageState extends State<NewsDashboardPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.secondaryLightGrey,
-      appBar: AppBar(
+      appBar:
+       AppBar(
         backgroundColor: AppColors.primaryBlue,
         leadingWidth: 75,
         leading: const Center(
@@ -51,10 +49,39 @@ class _NewsDashboardPageState extends State<NewsDashboardPage> {
           NewsAppBar(),
         ],
       ),
-      body: _listdata(),
+      // body: _listdata(),
+      body:Column(
+        children: [
+           NewsList() ,
+      
+        ],
+      ),
       floatingActionButton: FButton(),
     );
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   /* ...........list data........... */
   Widget _listdata() {
@@ -67,39 +94,53 @@ class _NewsDashboardPageState extends State<NewsDashboardPage> {
         SearchBar(),
         HeadingText(),
         Expanded(
-          child: GetBuilder<NewsController>(
-              init: NewsController(),
-              builder: (controller) {
-                return ListView.builder(
-                        itemCount:10,
+          child: Container(
+            // height: 200,
+            // color: Colors.red,
+            child:NewsList(),
+        
                      
-                    // itemCount: controller.newsList.length,
-                  itemBuilder: (context, index) {
-                    return
-                          //  _newsData(index,controller);
-                               Text("testing");
-                              //  Text(controller.newsList[index].author.toString());
-        // logger.d('controller.newsList[index].author.toString()');
-                  },
-                );
-              }),
+                
+            /*  GetBuilder<HomeNewsController>(
+                init: HomeNewsController(),
+                 
+                builder: (controller) {
+        
+        
+        
+        
+                  return ListView.builder(
+                          //  itemCount:10,
+                       
+                        itemCount: controller.newsList.length,
+                    itemBuilder: (context, index) {
+                      return
+                            //  _newsData(index,controller);
+                                  // Text("testing");
+                                 Text(controller.newsList[index].author.toString());
+            // logger.d('controller.newsList[index].author.toString()');
+                    },
+                  );
+                }
+                ), */
+          ),
         ),
       ],
     );
   }
 
   // .........newsData.............//
-  Widget _newsData(index, controller) {
+  /* Widget _newsData(index, controller) {
     return GestureDetector(
-      // onTap: () {
-      //   Navigator.push(
-      //     context,
-      //     MaterialPageRoute(
-      //         builder: (context) => NewsDetailsScreen(
-      //               passingNewsData: controller.newsList[index],
-      //             )),
-      //   );
-      // },
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => NewsDetailsScreen(
+                    passingNewsData: controller.newsList[index],
+                  )),
+        );
+      },
       child: Card(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -155,5 +196,5 @@ class _NewsDashboardPageState extends State<NewsDashboardPage> {
         ),
       ),
     );
-  }
+  } */
 }
