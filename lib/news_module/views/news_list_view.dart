@@ -12,30 +12,25 @@ import 'news_heading.dart';
 
 class NewsDashboardPage extends StatefulWidget {
   NewsDashboardPage({Key? key}) : super(key: key);
-   final HomeNewsController controller = Get.put(HomeNewsController());
-  final homeNewsController = Get.find<HomeNewsController>();
+  final HomeNewsController controller = Get.put(HomeNewsController());
+
+  // final homeNewsController = Get.find<HomeNewsController>();
 
   @override
   State<NewsDashboardPage> createState() => _NewsDashboardPageState();
 }
 
-
-
 class _NewsDashboardPageState extends State<NewsDashboardPage> {
   void initState() {
-    // for testing the data.........
-    // NewsApiServices().fetchNewsArticle();
- HomeNewsController().getNews();
+    widget.controller.getNews();
     super.initState();
-
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.secondaryLightGrey,
-      appBar:
-       AppBar(
+      appBar: AppBar(
         backgroundColor: AppColors.primaryBlue,
         leadingWidth: 75,
         leading: const Center(
@@ -50,61 +45,39 @@ class _NewsDashboardPageState extends State<NewsDashboardPage> {
         ],
       ),
       // body: _listdata(),
-      body:Column(
-        children: [
-           NewsList() ,
-      
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            SizedBox(height: 10),
+            SearchBar(),
+            HeadingText(),
+            NewsList(),
+          ],
+        ),
       ),
       floatingActionButton: FButton(),
     );
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   /* ...........list data........... */
-  Widget _listdata() {
+  /* Widget _listdata() {
     return Column(
       children: [
         SizedBox(
           height: 20,
         ),
-      
         SearchBar(),
         HeadingText(),
         Expanded(
           child: Container(
-            // height: 200,
+            //  height: 200,
             // color: Colors.red,
-            child:NewsList(),
-        
-                     
-                
+            child: NewsList(),
+
             /*  GetBuilder<HomeNewsController>(
                 init: HomeNewsController(),
-                 
-                builder: (controller) {
+                                 builder: (controller) {
         
         
         
@@ -128,7 +101,7 @@ class _NewsDashboardPageState extends State<NewsDashboardPage> {
       ],
     );
   }
-
+ */
   // .........newsData.............//
   /* Widget _newsData(index, controller) {
     return GestureDetector(

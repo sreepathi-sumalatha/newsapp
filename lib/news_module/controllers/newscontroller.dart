@@ -1,4 +1,4 @@
-import 'package:get/get.dart';
+/* import 'package:get/get.dart';
 import 'package:news_app/apiservice/apiservice.dart';
 import 'package:news_app/models/news_model_data.dart';
 
@@ -33,7 +33,7 @@ import 'package:news_app/models/news_model_data.dart';
 }
 
 
-
+ */
 
 
 
