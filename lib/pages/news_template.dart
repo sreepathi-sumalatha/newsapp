@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../common_modules/loggerfile.dart';
+import '../common_modules/logger_file.dart';
 import '../models/model.dart';
 import "package:timeago/timeago.dart" as timeago;
 import "package:cached_network_image/cached_network_image.dart";

@@ -1,4 +1,4 @@
-import 'package:dio/dio.dart';
+/* import 'package:dio/dio.dart';
 import 'package:news_app/models/news_model_data.dart';
 
 import '../common_modules/loggerfile.dart';
@@ -33,7 +33,7 @@ class NewsApiServices {
     }
     // update();
   }
-}
+} */
 
 
 

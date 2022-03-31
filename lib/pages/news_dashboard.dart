@@ -15,7 +15,7 @@ class HomeNews extends StatelessWidget {
   @override
   void initState() {    
   //DO OTHER STUFF
-  HomeNewsController().getNews();
+  // HomeNewsController().getNews(apiUrl: '');
 }
   Widget build(BuildContext context) {
     return Scaffold(

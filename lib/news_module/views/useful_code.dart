@@ -17,7 +17,7 @@
                            fit: BoxFit.cover,
                         )
                         )
-                        )  */
+                        )  
 //....................other data...........
 //  builder: (controller) => controller.isLoading
 //                     ? CircularProgressIndicator()

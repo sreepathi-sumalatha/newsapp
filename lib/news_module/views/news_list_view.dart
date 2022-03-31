@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/common_modules/AppColors.dart';
 import 'package:news_app/news_module/views/search_bar.dart';
+import '../../pages/countries_news.dart';
 import '../../pages/news_list.dart';
 import '../controllers/home_controller.dart';
 import 'appbar.dart';
@@ -22,7 +23,7 @@ class NewsDashboardPage extends StatefulWidget {
 
 class _NewsDashboardPageState extends State<NewsDashboardPage> {
   void initState() {
-    widget.controller.getNews();
+    // widget.controller.getNews(apiUrl: '');
     super.initState();
   }
 
@@ -41,7 +42,8 @@ class _NewsDashboardPageState extends State<NewsDashboardPage> {
           ),
         )),
         actions: <Widget>[
-          NewsAppBar(),
+          // NewsAppBar(),
+          CountryNews(),
         ],
       ),
       // body: _listdata(),

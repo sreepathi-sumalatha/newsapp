@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/* import 'package:flutter/material.dart';
 // import 'package:news_app/models/news_model.dart';
 import 'package:news_app/models/news_model_data.dart';
 import 'package:get/get.dart';
@@ -90,3 +90,4 @@ class _NewsDetailsScreenState extends State<NewsDetailsScreen> {
     return Text("Here News  time");
   }
 }
+ */
